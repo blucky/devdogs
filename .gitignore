@@ -1,3 +1,5 @@
 node_modules
 dist
 .tmp
+.node-version
+npm-debug.log

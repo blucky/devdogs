@@ -10,10 +10,16 @@ Original ource code is [ragingwind/devdogs](https://github.com/ragingwind/devdog
 
 # Changes to the original
 
-+ Windows support.
-+ Support electron 1.4.8 (Origin supports 0.36.3)
-+ Import Devtron
++   Windows support.
++   Support electron 1.4.8 (Origin supports 0.36.3)
++   Import Devtron
 
+# 簡単に言うと？
+[ragingwind](https://github.com/ragingwind)さんの作られた、
+[DevDocs](https://devdocs.io/)のオン＆オフラインビューア
+[devdogs](https://github.com/ragingwind/devdogs)を、Windowsに対応させてElectronのVersion 1.0以降に対応させたものです。
+
+ちょっとした修正だけです。
 
 ## Install
 
@@ -26,7 +32,7 @@ Only support Windows.
 
 ### Supporting global shortcut
 
-- `Command or Ctrl` + ?: Hide and show application
+-   `Command or Ctrl` + ?: Hide and show application
 
 ## Development
 

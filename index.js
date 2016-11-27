@@ -1,10 +1,12 @@
 'use strict';
 
-const app = require('electron').app;
-const BrowserWindow = require('electron').BrowserWindow;
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const globalShortcut = electron.globalShortcut;
+const Menu = electron.Menu;
 const fs = require('fs');
 const path = require('path');
-const Shortcut = require('electron-shortcut');
 const togglify = require('electron-togglify-window');
 const windowStateKeeper = require('electron-window-state');
 const Configstore = require('configstore');
@@ -13,14 +15,12 @@ const pkg = require(path.join(__dirname, './package.json'));
 const conf = new Configstore(pkg.name, {animation: 'scale'});
 
 if (process.env.NODE_ENV !== 'production') {
-	require('crash-reporter').start({
+	electron.crashReporter.start({
 		companyName: pkg.author.name,
 		submitURL: pkg.repository
 	});
 	require('electron-debug')();
 }
-
-require('electron-menu-loader')(path.join(__dirname, './menu'), [process.platform]);
 
 // prevent window being GC'd
 let win = null;
@@ -43,7 +43,7 @@ app.on('ready', () => {
 		resizable: true,
 		center: true,
 		show: true,
-		skipTaskbar: true,
+		// skipTaskbar: true,
 		webPreferences: {
 			preload: path.join(__dirname, 'browser.js')
 		}
@@ -52,6 +52,16 @@ app.on('ready', () => {
 	});
 
 	mainWindowState.manage(win);
+
+	const menu = require('./menu.js');
+	if(process.platform == 'darwin') {
+		win.setMenu(null);
+		let menuTemplate = Menu.buildFromTemplate(menu.macosMenu);
+		Menu.setApplicationMenu(menuTemplate);
+	} else {
+		let menuTemplate = Menu.buildFromTemplate(menu.otherosMenu);
+		win.setMenu(menuTemplate);
+	}
 
 	win.loadURL('http://devdocs.io');
 
@@ -78,10 +88,7 @@ app.on('ready', () => {
 	});
 
 	// register a shortcuts
-	Shortcut.register('Command+?', {
-		autoRegister: false,
-		cmdOrCtrl: true
-	}, () => {
+	globalShortcut.register('CmdOrCtrl+?', () => {
 		win.toggle();
 	});
 });

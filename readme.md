@@ -1,12 +1,26 @@
-# devdogs
+# devdogs for Win
 
-![out](https://cloud.githubusercontent.com/assets/124117/10069648/87a84332-62e8-11e5-926a-e3f29c8f8422.gif)
+Sorry. I can't speak English.
+
 
 > Unofficial [Devdocs](http://devdocs.io/) with Electron.
+> ... and Windows Support.
+
+Original ource code is [ragingwind/devdogs](https://github.com/ragingwind/devdogs)
+
+# Changes to the original
+
++ Windows support.
++ Support electron 1.4.8 (Origin supports 0.36.3)
++ Import Devtron
+
 
 ## Install
 
-Only support OS X, requires OS X 10.8 or newer. [Download](https://github.com/ragingwind/devdogs/releases/latest), unzip, copy and run wherever you want
+Only support Windows.
+
+
+
 
 ## Features something different
 
@@ -16,7 +30,7 @@ Only support OS X, requires OS X 10.8 or newer. [Download](https://github.com/ra
 
 ## Development
 
-### Run app   
+### Run app
 ```
 npm install
 npm start
@@ -27,8 +41,8 @@ npm start
 ```
 npm install
 npm run-script build
-npm run-script package
 ```
+~~npm run-script package~~
 
 ## License
 
